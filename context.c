@@ -1,0 +1,237 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include "context.h"
+#include "s_context.h"
+
+t_context   context_init(t_context context, t_canva *canva, int canva_size_x, int canva_size_y)
+{
+    context.canva = canva;
+    context.canva_size_x = canva_size_x;
+    context.canva_size_y = canva_size_y;
+    context.path_move_x = -2147483648;
+    context.path_move_y = -2147483648;
+    context.path_line_x = -2147483648;
+    context.path_line_y = -2147483648;
+    context.fill_rect = &fill_rect;
+    context.begin_path = &begin_path;
+    context.move_to = &move_to;
+    context.line_to = &line_to;
+    context.stroke = &stroke;
+    return(context);
+}
+
+//prend un pointeur vers context
+//pour modifier le context original
+int	fill_rect(t_context *context, float x, float y, float width, float height)
+{
+    float canva_max_x;
+    float canva_min_x;
+    float canva_max_y;
+    float canva_min_y;
+    float rect_width;
+    float rect_height;
+    int	i;
+
+    canva_max_x = context->canva_size_x + 0.001;
+    canva_min_x = context->canva_size_x * - 1;
+    canva_max_y = context->canva_size_y + 0.001;
+    canva_min_y = context->canva_size_y * - 1;
+    rect_width = x + width + 0.001;
+    rect_height = y + height + 0.001;
+    i = 0;
+
+    if (x < canva_min_x || x > canva_max_y
+	    || y < canva_min_y || y > canva_max_x)
+	return (0);
+    if (rect_width > canva_max_x || rect_height > canva_max_y)
+	return (0);
+    while (context->canva[i].c)
+    {
+	if ((context->canva[i].x >= x && context->canva[i].x <= rect_width)
+		&& (context->canva[i].y >= y && context->canva[i].y <= rect_height))
+	{
+	    context->canva[i].c = 's';
+	}
+	i++;
+    }
+    return(1);
+}
+
+int	begin_path(t_context *context)
+{
+    context->path_move_x = -2147483648.0;
+    context->path_move_y = -2147483648.0;
+    context->path_line_x = -2147483648.0;
+    context->path_line_y = -2147483648.0;
+    return (0);
+}
+
+int	move_to(t_context *context, float path_move_x, float path_move_y)
+{
+    context->path_move_x = path_move_x;
+    context->path_move_y = path_move_y;
+    return(0);
+}
+
+int	line_to(t_context *context, float path_line_x, float path_line_y)
+{
+    context->path_line_x = path_line_x;
+    context->path_line_y = path_line_y;
+    return(0);
+}
+
+int	affine_find_a(t_context context, int *a)
+{
+    //remove next line its for Werror_unused
+    *a = context.path_move_x;
+
+    float f;
+    float f_copy;
+    int round;
+
+    //f = (context.path_line_y - context.path_move_y) / (context.path_line_x - context.path_move_x);
+
+    f = (1.0 - 0.0) / (2.0 - 0.0);
+    printf("f:%f\n", f);
+    f_copy = f;
+    round = f;
+    f_copy -= round;
+    f_copy *= 10;
+    printf("f_copy:%f\n", f_copy);
+    if (f_copy >= 5)
+	f += 1;
+    *a = f;
+    printf("a:%d\n\n", *a);
+    return (*a);
+}
+
+int	affine_find_b(t_context context, int a, int *b)
+{
+    int y;
+
+    y = a * context.path_move_x;
+    *b = context.path_move_x + (y *= - 1);
+    return (*b);
+}
+
+int	y_min_max_define(t_context context, float *y_min, float *y_max)
+{
+    if (context.path_move_y <= context.path_line_y)
+    {
+	*y_min = context.path_move_y; 
+	*y_max = context.path_line_y; 
+    }
+    else if (context.path_move_y > context.path_line_y)
+    {
+	*y_min = context.path_line_y; 
+	*y_max = context.path_move_y; 
+    }
+    return (0);
+}
+
+int	is_float_equal(float a, float b)
+{
+    if (fabs(a - b) < 0.01)
+	return (1);
+    return (0);
+}
+
+int	stroke_vert(t_context *context, char c)
+{
+    int	i;
+    float y_min; 
+    float y_max; 
+
+    i = 0;
+    y_min = 0;
+    y_max = 0;
+    y_min_max_define(*context, &y_min, &y_max);
+    printf("y_min                :%f\n", y_min);
+    printf("y_max                :%f\n\n", y_max);
+    while (y_min <= y_max + 0.01)
+    {
+	printf("y_min                :%0.12f\n", y_min);
+	i = 0;
+	while (context->canva[i].c)
+	{
+	    /* 
+	    printf("context->canva[i].x  :%f\n", context->canva[i].x);
+	    printf("context->canva[i].y  :%f\n", context->canva[i].y);
+	    printf("context->path_move_x :%f\n", context->path_move_x);
+	    printf("y_min                :%f\n\n", y_min);
+	    */
+	    if (is_float_equal(context->canva[i].x, context->path_move_x) 
+		    && is_float_equal(context->canva[i].y, y_min)
+		    && context->canva[i].c != '\n')
+	    {
+	    /* 
+		printf("coucou--------------------------------------\n");
+		printf("coucou--------------------------------------\n");
+		printf("coucou--------------------------------------\n\n");
+	    */
+		context->canva[i].c = c;
+	    }
+	    i++;	
+	}
+	y_min += 0.1;
+    }
+    return (0);
+}
+
+int	coord_is_in_line(int x, int y, float a, float b)
+{
+    /* 
+    printf("canva.x:%d\n", x);
+    printf("canva.y:%d\n", y);
+    printf("y == a * x + b : %d\n", a * x + b);
+    printf("%d == %d * %d + %d : %d\n", y, a, x, b, a * x + b);
+    */
+    float x_copy;
+    float y_copy;
+    
+    x_copy = x;
+    y_copy = y;
+    if (y_copy == a * x_copy + b)
+    {
+	//printf("OK\n\n");
+	return (1);
+    }
+    //printf("NO\n\n");
+    return (0);
+}
+
+int	stroke(t_context *context)
+{
+    int i;
+    float a;
+    float b;
+    char c;
+
+    i = 0;
+    a = 0;
+    b = 0;
+    c = 'o';
+    if (context->path_move_x == context->path_line_x)
+    {
+	stroke_vert(context, c);
+	return (0);
+    }
+    //a = affine_find_a(*context, &a);
+    //b = affine_find_b(*context, a, &b);
+    a = 0.05;
+    b = 0;
+    while (context->canva[i].c) 
+    {
+	if(coord_is_in_line(context->canva[i].x, context->canva[i].y, a, b)
+		&& context->canva[i].c != '\n')
+	{
+	    context->canva[i].c = c; 
+	    //printf("canva.c:%c\n", context->canva[i].c);
+	}
+	i++; 
+    }
+    printf("a:%f\n", a);
+    printf("b:%f\n\n", b);
+    return (0);
+}

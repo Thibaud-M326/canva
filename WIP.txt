@@ -1,0 +1,4 @@
+-securiser la taille des path_line et path_move, par rapport a la taille du tableau / 2;
+    -sortir du programme et afficher les valeur entré et dire quelle ne sont pas
+	autorisée, on peut auusi aafficher la valeur min et max autorisé pour le
+	tableau courant.
