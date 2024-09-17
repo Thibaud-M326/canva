@@ -8,6 +8,7 @@ int	fill_rect(t_context *context, float x, float y, float width, float height);
 int	begin_path(t_context *context);
 int	move_to(t_context *context, float path_move_x, float path_move_y);
 int	line_to(t_context *context, float path_line_x, float path_line_y);
+int	is_float_equal(float a, float b);
 int	stroke(t_context *context);
 
 #endif

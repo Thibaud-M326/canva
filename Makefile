@@ -1,5 +1,5 @@
 canva: main.o canva.o context.o
-	cc -g -Wall -Wextra -Werror main.o canva.o context.o -o canva
+	cc -g -Wall -Wextra -Werror main.o canva.o context.o -o canva -lm
 	./canva
 
 main.o: main.c canva.h context.h
@@ -12,4 +12,4 @@ context.o: context.c context.h s_context.h
 	cc -g -Wall -Wextra -Werror -c context.c -o context.o
 
 clean:
-	rm -f canva.o context.o main.o
+	rm -f main.o canva.o context.o canva
