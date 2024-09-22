@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
+#include <math.h>
 #include "canva.h"
 #include "context.h"
 #include "random.h"
 
 int main(void)
 {
-    //canva & context initialisation
+    //canva & context : initialisation
     int	canva_size_x;
     int canva_size_y;
     t_canva *canva;
@@ -20,40 +18,27 @@ int main(void)
     canva = canva_init(canva, canva_size_x, canva_size_y);
     context = context_init(context, canva, canva_size_x, canva_size_y);
 
-    //random lines
-    int timestamp;
-    int i;
-    float path_move_x;
-    float path_move_y;
-    float path_line_x;
-    float path_line_y;
-    int fps = 30000;
+    //sin wave
+    float   i;
+    float   sin_value;
+    float   sin_x;
+    float   sin_y;
 
-    timestamp = time(NULL);
-    srand(timestamp);
-
-    i = 0;
-    while (i < 300)
+    i = 0.0;
+    sin_value = 0.0;
+    sin_x = canva_size_x * -1 - 0.1;
+    sin_y = 0.0;
+    while (i <= M_PI * 2)
     {
-	printf("\e[1;1H\e[2J");
-   	path_move_x = random_float_range(-canva_size_x, canva_size_x);
-   	path_move_y = random_float_range(-canva_size_y, canva_size_y);
-   	path_line_x = random_float_range(-canva_size_x, canva_size_x);
-   	path_line_y = random_float_range(-canva_size_y, canva_size_y);
-	/*
-   	path_move_x = 0;
-   	path_move_y = 0;
-   	path_line_x = random_float_range(-canva_size_x, canva_size_x);
-   	path_line_y = random_float_range(-canva_size_y, canva_size_y);
-	*/
-
-	begin_path(&context);
-	move_to(&context, path_move_x, path_move_y);
-	line_to(&context, path_line_x, path_line_y);
-	stroke(&context);
-	canva_print(canva);
-	usleep(fps);
-	i++;
-    }	
+	sin_value = sin(i);
+	sin_x += 0.1;
+	sin_y = sin_value * 5;
+	fill_rect(&context, sin_x, sin_y, 0.1, 0.1);
+	printf("sin   :%f\n", sin_value);
+	printf("sin_x :%f\n", sin_x);
+	printf("sin_y :%f\n\n", sin_y);
+	i += 0.1;
+    }
+    canva_print_middle(canva);
     return (0);
 }
