@@ -33,16 +33,16 @@ int	fill_rect(t_context *context, float x, float y, float width, float height)
     float rect_height;
     int	i;
 
-    canva_max_x = context->canva_size_x + 0.001;
+    canva_max_x = context->canva_size_x;
     canva_min_x = context->canva_size_x * - 1;
-    canva_max_y = context->canva_size_y + 0.001;
+    canva_max_y = context->canva_size_y;
     canva_min_y = context->canva_size_y * - 1;
-    rect_width = x + width + 0.001;
-    rect_height = y + height + 0.001;
+    rect_width = x + width;
+    rect_height = y + height;
     i = 0;
 
-    if (x < canva_min_x || x > canva_max_y
-	    || y < canva_min_y || y > canva_max_x)
+    if (x < canva_min_x || x > canva_max_x
+	    || y < canva_min_y || y > canva_max_y)
 	return (0);
     if (rect_width > canva_max_x || rect_height > canva_max_y)
 	return (0);
