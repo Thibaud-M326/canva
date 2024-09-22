@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <math.h>
 
+//befre using random.c function,
+//you need to call srand() on main function
+//with timestamp :
+/*  main.c :
+	int timestamp;
+	timestamp = time(NULL);
+	srand(timestamp);
+*/
+
 float random_round_float(float range)
 {
     float random;
