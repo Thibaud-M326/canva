@@ -1,0 +1,65 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/thibaud/Documents/code/c/canva/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+CANVA_H	canva.h	/^#define CANVA_H$/;"	d
+CONTEXT_H	context.h	/^#define CONTEXT_H$/;"	d
+RANDOM_H	random.h	/^#define RANDOM_H$/;"	d
+S_CANVA_H	s_canva.h	/^#define S_CANVA_H$/;"	d
+S_CONTEXT_H	s_context.h	/^#define S_CONTEXT_H$/;"	d
+affine_coord	context.c	/^int	affine_coord(float canva_x, float canva_y, float a, float b)$/;"	f	typeref:typename:int
+affine_find_a	context.c	/^float	affine_find_a(t_context context, float *a)$/;"	f	typeref:typename:float
+affine_find_b	context.c	/^float	affine_find_b(t_context context, float a, float *b)$/;"	f	typeref:typename:float
+begin_path	context.c	/^int	begin_path(t_context *context)$/;"	f	typeref:typename:int
+begin_path	s_context.h	/^    int	    (*begin_path)(struct s_context *context);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context)
+c	s_canva.h	/^    char c;$/;"	m	struct:s_canva	typeref:typename:char
+canva	Makefile	/^canva: main.o canva.o context.o random.o$/;"	t
+canva	s_context.h	/^    t_canva *canva;$/;"	m	struct:s_context	typeref:typename:t_canva *
+canva.o	Makefile	/^canva.o: canva.c canva.h s_canva.h$/;"	t
+canva_create	canva.c	/^t_canva *canva_create(int size_x, int size_y)$/;"	f	typeref:typename:t_canva *
+canva_init	canva.c	/^t_canva	*canva_init(t_canva *canva, int size_x, int size_y)$/;"	f	typeref:typename:t_canva *
+canva_init_line_feed	canva.c	/^void	canva_init_line_feed(t_canva *canva_point)$/;"	f	typeref:typename:void
+canva_init_point	canva.c	/^void	canva_init_point(float x, float y, t_canva *canva_point)$/;"	f	typeref:typename:void
+canva_len_count	canva.c	/^int	canva_len_count(int size_x, int size_y)$/;"	f	typeref:typename:int
+canva_print	canva.c	/^void	canva_print(t_canva *canva)$/;"	f	typeref:typename:void
+canva_print_coord	canva.c	/^void	canva_print_coord(t_canva *canva)$/;"	f	typeref:typename:void
+canva_print_middle	canva.c	/^void	canva_print_middle(t_canva *canva)$/;"	f	typeref:typename:void
+canva_size_x	s_context.h	/^    int	    canva_size_x;$/;"	m	struct:s_context	typeref:typename:int
+canva_size_y	s_context.h	/^    int	    canva_size_y;$/;"	m	struct:s_context	typeref:typename:int
+clean	Makefile	/^clean:$/;"	t
+context.o	Makefile	/^context.o: context.c context.h s_context.h$/;"	t
+context_init	context.c	/^t_context   context_init(t_context context, t_canva *canva, int canva_size_x, int canva_size_y)$/;"	f	typeref:typename:t_context
+fill_rect	context.c	/^int	fill_rect(t_context *context, float x, float y, float width, float height)$/;"	f	typeref:typename:int
+fill_rect	s_context.h	/^    int	    (*fill_rect)(struct s_context *context, float x, float y, float width, float height)/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float x,float y,float width,float height)
+is_float_equal	context.c	/^int	is_float_equal(float a, float b)$/;"	f	typeref:typename:int
+line_to	context.c	/^int	line_to(t_context *context, float path_line_x, float path_line_y)$/;"	f	typeref:typename:int
+line_to	s_context.h	/^    int	    (*line_to)(struct s_context *context, float path_line_x, float path_line_y);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float path_line_x,float path_line_y)
+main	main.c	/^int main(void)$/;"	f	typeref:typename:int
+main.o	Makefile	/^main.o: main.c canva.h context.h$/;"	t
+move_to	context.c	/^int	move_to(t_context *context, float path_move_x, float path_move_y)$/;"	f	typeref:typename:int
+move_to	s_context.h	/^    int	    (*move_to)(struct s_context *context, float path_move_x, float path_move_y);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float path_move_x,float path_move_y)
+path_line_x	s_context.h	/^    float   path_line_x;$/;"	m	struct:s_context	typeref:typename:float
+path_line_y	s_context.h	/^    float   path_line_y;$/;"	m	struct:s_context	typeref:typename:float
+path_move_x	s_context.h	/^    float   path_move_x;$/;"	m	struct:s_context	typeref:typename:float
+path_move_y	s_context.h	/^    float   path_move_y;$/;"	m	struct:s_context	typeref:typename:float
+random.o	Makefile	/^random.o: random.c random.h$/;"	t
+random_float	random.c	/^float random_float(void)$/;"	f	typeref:typename:float
+random_float_range	random.c	/^float random_float_range(float min, float max)$/;"	f	typeref:typename:float
+random_round_float	random.c	/^float random_round_float(float range)$/;"	f	typeref:typename:float
+s_canva	s_canva.h	/^typedef struct s_canva$/;"	s
+s_context	s_context.h	/^typedef struct s_context$/;"	s
+stroke	context.c	/^int	stroke(t_context *context)$/;"	f	typeref:typename:int
+stroke	s_context.h	/^    int	    (*stroke)(struct s_context *context);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context)
+stroke_vert	context.c	/^int	stroke_vert(t_context *context, char c)$/;"	f	typeref:typename:int
+t_canva	s_canva.h	/^} t_canva;$/;"	t	typeref:struct:s_canva
+t_context	s_context.h	/^}   t_context;$/;"	t	typeref:struct:s_context
+x	s_canva.h	/^    float x;$/;"	m	struct:s_canva	typeref:typename:float
+y	s_canva.h	/^    float y;$/;"	m	struct:s_canva	typeref:typename:float
+y_min_max_define	context.c	/^int	y_min_max_define(t_context context, float *y_min, float *y_max)$/;"	f	typeref:typename:int
