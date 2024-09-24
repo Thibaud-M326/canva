@@ -1,6 +1,6 @@
 canva: main.o canva.o context.o random.o
 	cc -g -Wall -Wextra -Werror main.o canva.o context.o random.o -o canva -lm
-	rm -f main.o canva.o context.o
+	rm -f main.o canva.o context.o random.o
 	ctags -R
 	clear
 	./canva
