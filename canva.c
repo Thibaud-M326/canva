@@ -61,7 +61,6 @@ t_canva	*canva_init(t_canva *canva, int size_x, int size_y)
     y = size_y * -1;
     size_row = size_x * 10 * 2 + 1;
     canva_len = canva_len_count(size_x, size_y);
-    printf("\ncanva_len:%d\n\n", canva_len);
     while (i < canva_len - 1)
     {
 	j = 0;

@@ -28,14 +28,18 @@ canva_init	canva.c	/^t_canva	*canva_init(t_canva *canva, int size_x, int size_y)
 canva_init_line_feed	canva.c	/^void	canva_init_line_feed(t_canva *canva_point)$/;"	f	typeref:typename:void
 canva_init_point	canva.c	/^void	canva_init_point(float x, float y, t_canva *canva_point)$/;"	f	typeref:typename:void
 canva_len_count	canva.c	/^int	canva_len_count(int size_x, int size_y)$/;"	f	typeref:typename:int
+canva_point	s_context.h	/^    char    canva_point;$/;"	m	struct:s_context	typeref:typename:char
 canva_print	canva.c	/^void	canva_print(t_canva *canva)$/;"	f	typeref:typename:void
 canva_print_coord	canva.c	/^void	canva_print_coord(t_canva *canva)$/;"	f	typeref:typename:void
 canva_print_middle	canva.c	/^void	canva_print_middle(t_canva *canva)$/;"	f	typeref:typename:void
-canva_size_x	s_context.h	/^    int	    canva_size_x;$/;"	m	struct:s_context	typeref:typename:int
-canva_size_y	s_context.h	/^    int	    canva_size_y;$/;"	m	struct:s_context	typeref:typename:int
+canva_size_x	s_context.h	/^    float   canva_size_x;$/;"	m	struct:s_context	typeref:typename:float
+canva_size_y	s_context.h	/^    float   canva_size_y;$/;"	m	struct:s_context	typeref:typename:float
 clean	Makefile	/^clean:$/;"	t
+clear_rect	context.c	/^int	clear_rect(t_context *context, float x, float y, float width, float height)$/;"	f	typeref:typename:int
+clear_rect	s_context.h	/^    int	    (*clear_rect)(struct s_context *context, float x, float y, float width, float height/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float x,float y,float width,float height)
 context.o	Makefile	/^context.o: context.c context.h s_context.h$/;"	t
 context_init	context.c	/^t_context   context_init(t_context context, t_canva *canva, int canva_size_x, int canva_size_y)$/;"	f	typeref:typename:t_context
+ctags -R	README.md	/^# ctags -R$/;"	c
 fill_rect	context.c	/^int	fill_rect(t_context *context, float x, float y, float width, float height)$/;"	f	typeref:typename:int
 fill_rect	s_context.h	/^    int	    (*fill_rect)(struct s_context *context, float x, float y, float width, float height)/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float x,float y,float width,float height)
 is_float_equal	context.c	/^int	is_float_equal(float a, float b)$/;"	f	typeref:typename:int

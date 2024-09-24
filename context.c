@@ -9,11 +9,13 @@ t_context   context_init(t_context context, t_canva *canva, int canva_size_x, in
     context.canva = canva;
     context.canva_size_x = canva_size_x;
     context.canva_size_y = canva_size_y;
+    context.canva_point = canva->c;
     context.path_move_x = -2147483648;
     context.path_move_y = -2147483648;
     context.path_line_x = -2147483648;
     context.path_line_y = -2147483648;
     context.fill_rect = &fill_rect;
+    context.clear_rect = &clear_rect;
     context.begin_path = &begin_path;
     context.move_to = &move_to;
     context.line_to = &line_to;
@@ -52,6 +54,41 @@ int	fill_rect(t_context *context, float x, float y, float width, float height)
 		&& (context->canva[i].y >= y && context->canva[i].y <= rect_height))
 	{
 	    context->canva[i].c = 's';
+	}
+	i++;
+    }
+    return(1);
+}
+
+int	clear_rect(t_context *context, float x, float y, float width, float height)
+{
+    float canva_max_x;
+    float canva_min_x;
+    float canva_max_y;
+    float canva_min_y;
+    float rect_width;
+    float rect_height;
+    int	i;
+
+    canva_max_x = context->canva_size_x;
+    canva_min_x = context->canva_size_x * - 1;
+    canva_max_y = context->canva_size_y;
+    canva_min_y = context->canva_size_y * - 1;
+    rect_width = x + width;
+    rect_height = y + height;
+    i = 0;
+
+    if (x < canva_min_x || x > canva_max_x
+	    || y < canva_min_y || y > canva_max_y)
+	return (0);
+    if (rect_width > canva_max_x || rect_height > canva_max_y)
+	return (0);
+    while (context->canva[i].c)
+    {
+	if ((context->canva[i].x >= x && context->canva[i].x <= rect_width)
+		&& (context->canva[i].y >= y && context->canva[i].y <= rect_height))
+	{
+	    context->canva[i].c = context->canva_point;
 	}
 	i++;
     }
