@@ -1,6 +1,6 @@
-canva: main.o canva.o context.o random.o
-	cc -g -Wall -Wextra -Werror main.o canva.o context.o random.o -o canva -lm
-	rm -f main.o canva.o context.o random.o
+canva: main.o canva.o context.o random.o draw.o
+	cc -g -Wall -Wextra -Werror main.o canva.o context.o random.o draw.o -o canva -lm
+	rm -f main.o canva.o context.o random.o draw.o
 	ctags -R
 	clear
 	./canva
@@ -17,6 +17,8 @@ context.o: context.c context.h s_context.h
 random.o: random.c random.h
 	cc -g -Wall -Wextra -Werror -c random.c -o random.o
 
+draw.o: draw.c draw.h
+	cc -g -Wall -Wextra -Werror -c draw.c -o draw.o
+
 clean:
 	rm -f main.o canva.o context.o random.o canva
-

@@ -42,7 +42,6 @@ int	fill_rect(t_context *context, float x, float y, float width, float height)
     rect_width = x + width;
     rect_height = y + height;
     i = 0;
-
     if (x < canva_min_x || x > canva_max_x
 	    || y < canva_min_y || y > canva_max_y)
 	return (0);

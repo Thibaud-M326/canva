@@ -11,6 +11,7 @@
 !_TAG_PROGRAM_VERSION	5.9.0	//
 CANVA_H	canva.h	/^#define CANVA_H$/;"	d
 CONTEXT_H	context.h	/^#define CONTEXT_H$/;"	d
+DRAW_H	draw.h	/^#define DRAW_H$/;"	d
 RANDOM_H	random.h	/^#define RANDOM_H$/;"	d
 S_CANVA_H	s_canva.h	/^#define S_CANVA_H$/;"	d
 S_CONTEXT_H	s_context.h	/^#define S_CONTEXT_H$/;"	d
@@ -20,7 +21,7 @@ affine_find_b	context.c	/^float	affine_find_b(t_context context, float a, float 
 begin_path	context.c	/^int	begin_path(t_context *context)$/;"	f	typeref:typename:int
 begin_path	s_context.h	/^    int	    (*begin_path)(struct s_context *context);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context)
 c	s_canva.h	/^    char c;$/;"	m	struct:s_canva	typeref:typename:char
-canva	Makefile	/^canva: main.o canva.o context.o random.o$/;"	t
+canva	Makefile	/^canva: main.o canva.o context.o random.o draw.o$/;"	t
 canva	s_context.h	/^    t_canva *canva;$/;"	m	struct:s_context	typeref:typename:t_canva *
 canva.o	Makefile	/^canva.o: canva.c canva.h s_canva.h$/;"	t
 canva_create	canva.c	/^t_canva *canva_create(int size_x, int size_y)$/;"	f	typeref:typename:t_canva *
@@ -40,6 +41,8 @@ clear_rect	s_context.h	/^    int	    (*clear_rect)(struct s_context *context, fl
 context.o	Makefile	/^context.o: context.c context.h s_context.h$/;"	t
 context_init	context.c	/^t_context   context_init(t_context context, t_canva *canva, int canva_size_x, int canva_size_y)$/;"	f	typeref:typename:t_context
 ctags -R	README.md	/^# ctags -R$/;"	c
+draw.o	Makefile	/^draw.o: draw.c draw.h$/;"	t
+draw_circle	draw.c	/^int draw_circle(t_context *context, float x, float y, float radius)$/;"	f	typeref:typename:int
 fill_rect	context.c	/^int	fill_rect(t_context *context, float x, float y, float width, float height)$/;"	f	typeref:typename:int
 fill_rect	s_context.h	/^    int	    (*fill_rect)(struct s_context *context, float x, float y, float width, float height)/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float x,float y,float width,float height)
 is_float_equal	context.c	/^int	is_float_equal(float a, float b)$/;"	f	typeref:typename:int
