@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "canva.h"
 #include "s_canva.h"
 
@@ -70,14 +71,57 @@ t_canva	*canva_init(t_canva *canva, int size_x, int size_y)
 		canva_init_line_feed(&(canva[i]));
 	    else
 		canva_init_point(x, y, &(canva[i]));
+	    canva[i].size_x = size_x;
+	    canva[i].size_y = size_y;
 	    x = x + 0.1;
 	    i++;
 	    j++;
 	}
 	x = size_x * -1;
 	y = y + 0.1;
-    }
+    }	
     canva[i].c = '\0';
+    return (canva);
+}
+
+t_canva *canva_cpy(t_canva *canva_dest, t_canva *canva_src)
+{
+    int i;
+
+    i = 0;
+    canva_dest = canva_create(canva_src->size_x, canva_src->size_y);
+    canva_dest = canva_init(canva_dest, canva_src->size_x, canva_src->size_y);
+    while (canva_src[i].c != '\0')
+    {
+	canva_dest[i].size_x = canva_src[i].size_x;
+	i++;	
+    }
+    return (canva_dest); 
+}
+
+/*
+	x' = x * cos(p) + y * sin(p);
+	y' = y * cos(p) - x * sin(p);
+*/
+t_canva *canva_rotate_axes(t_canva *canva, float rotation_angle)
+{
+    int i;
+    float x_temp;
+    float y_temp;
+
+    i = 0;
+    while(canva[i].c != '\0')
+    {
+    	if (canva[i].c != '\n')
+	{
+	    x_temp = canva[i].x;
+	    y_temp = canva[i].y;
+
+	    canva[i].x = x_temp * (float)cos(rotation_angle) + y_temp * (float)sin(rotation_angle);
+	    canva[i].y = y_temp * (float)cos(rotation_angle) - x_temp * (float)sin(rotation_angle);
+	}
+	i++;
+    }
     return (canva);
 }
 
@@ -118,6 +162,25 @@ void	canva_print(t_canva *canva)
     i = 0;
     while (canva[i].c != '\0')
     {
+	printf("%c", canva[i].c); 
+	i++;
+    }
+}
+
+void	canva_print_axes(t_canva *canva)
+{
+    int	i;
+
+    i = 0;
+    while (canva[i].c != '\0')
+    {
+	if (canva[i].x >= -0.01 && canva[i].x <= 0.01)
+	    canva[i].c = 'y';
+	if (canva[i].y >= -0.1 && canva[i].y <= 0.01)
+	    canva[i].c = 'x';
+	if (canva[i].x >= -0.01 && canva[i].x <= 0.01
+		&& canva[i].y >= 0.0 && canva[i].y <= 0.01)
+	    canva[i].c = 'o';
 	printf("%c", canva[i].c); 
 	i++;
     }

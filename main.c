@@ -20,11 +20,23 @@ int main(void)
     canva = canva_init(canva, canva_size_x, canva_size_y);
     context = context_init(context, canva, canva_size_x, canva_size_y);
 
-    //lissajous curve
+    //Rotation of axes in two dimensions
 
-    float radius;
+    float PI;
+    float rotation_angle;
 
-    radius = 1.0;
-    lissajous_curve(&context, radius);
+    PI = 3.1415;
+    rotation_angle = 0.0;
+    while (rotation_angle <= PI * 2)
+    {
+	printf("\e[1;1H\e[2J");
+
+	canva_rotate_axes(canva, rotation_angle);
+	canva_print_axes(canva);
+	canva = canva_init(canva, canva_size_x, canva_size_y);
+	rotation_angle += 0.01; 
+
+	usleep(30000);
+    }
     return (0);
 }
