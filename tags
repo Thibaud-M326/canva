@@ -48,6 +48,7 @@ fill_rect	s_context.h	/^    int	    (*fill_rect)(struct s_context *context, floa
 is_float_equal	context.c	/^int	is_float_equal(float a, float b)$/;"	f	typeref:typename:int
 line_to	context.c	/^int	line_to(t_context *context, float path_line_x, float path_line_y)$/;"	f	typeref:typename:int
 line_to	s_context.h	/^    int	    (*line_to)(struct s_context *context, float path_line_x, float path_line_y);$/;"	m	struct:s_context	typeref:typename:int (*)(struct s_context * context,float path_line_x,float path_line_y)
+lissajous_curve	draw.c	/^int lissajous_curve(t_context *context, float radius)$/;"	f	typeref:typename:int
 main	main.c	/^int main(void)$/;"	f	typeref:typename:int
 main.o	Makefile	/^main.o: main.c canva.h context.h$/;"	t
 move_to	context.c	/^int	move_to(t_context *context, float path_move_x, float path_move_y)$/;"	f	typeref:typename:int
