@@ -32,8 +32,10 @@ int main(void)
 	printf("\e[1;1H\e[2J");
 
 	canva_rotate_axes(canva, rotation_angle);
-	draw_circle(&context, 1.0, 1.0, 1.0);
-	canva_print_axes(canva);
+	draw_circle(&context, 1.0, 0.0, 1.0);
+	draw_circle(&context, 2.0, 0.0, 1.0);
+	draw_circle(&context, 3.0, 0.0, 1.0);
+	canva_print(canva);
 	canva = canva_init(canva, canva_size_x, canva_size_y);
 	rotation_angle += 0.1; 
 
