@@ -12,7 +12,7 @@ int main(void)
     float   canva_size_x;
     float   canva_size_y;
     t_canva *canva;
-    t_context context;
+    t_context context = {0};
 
     canva_size_x = 8;
     canva_size_y = 2;
@@ -32,6 +32,7 @@ int main(void)
 	printf("\e[1;1H\e[2J");
 
 	canva_rotate_axes(canva, rotation_angle);
+	draw_circle(&context, 1.0, 0.5, 0.5);
 	canva_print_axes(canva);
 	canva = canva_init(canva, canva_size_x, canva_size_y);
 	rotation_angle += 0.01; 
