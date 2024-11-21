@@ -12,7 +12,7 @@ int main(void)
     float   canva_size_x;
     float   canva_size_y;
     t_canva *canva;
-    t_context context;
+    t_context context = {0};
 
     canva_size_x = 8;
     canva_size_y = 2;
