@@ -12,7 +12,7 @@ int main(void)
     int	canva_size_x;
     int canva_size_y;
     t_canva *canva;
-    t_context context;
+    t_context context = {0};
 
     //x = 22 //y = 7 //make a big square
     canva_size_x = 22;
@@ -34,7 +34,7 @@ int main(void)
     srand(timestamp);
 
     i = 0;
-    while (i < 30)
+    while (i < 30000)
     {
 	printf("\e[1;1H\e[2J");
    	path_move_x = random_float_range(-canva_size_x, canva_size_x);
@@ -49,6 +49,6 @@ int main(void)
 	canva_print(canva);
 	usleep(fps);
 	i++;
-    }	
+    }
     return (0);
 }
