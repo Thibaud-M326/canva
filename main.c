@@ -12,7 +12,7 @@ int main(void)
     t_canva *canva;
     t_context context = {0};
 
-    canva_size_x = 4;
+    canva_size_x = 6;
     canva_size_y = 2;
     canva = canva_create(canva_size_x, canva_size_y);
     canva = canva_init(canva, canva_size_x, canva_size_y);
@@ -26,7 +26,7 @@ int main(void)
     i = 0.0;
     sin_x = canva_size_x * -1;
     sin_y = 0.0;
-    while (i <= M_PI * 2)
+    while (i <= M_PI * 4)
     {
 		sin_x += 0.1;
 		sin_y = sin(i) * 1;
