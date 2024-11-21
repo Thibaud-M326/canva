@@ -10,7 +10,7 @@ int main(void)
     float   canva_size_x;
     float   canva_size_y;
     t_canva *canva;
-    t_context context;
+    t_context context = {0};
 
     canva_size_x = 2;
     canva_size_y = 1;
@@ -20,7 +20,7 @@ int main(void)
 
     //clear_rect
     context.fill_rect(&context, -canva_size_x, -canva_size_y, canva_size_x * 2, canva_size_y * 2);
-    context.clear_rect(&context, -canva_size_x / 2, -canva_size_y / 2, canva_size_x, canva_size_y);
+    context.clear_rect(&context, -canva_size_x / 1.5, -canva_size_y / 2, canva_size_x, canva_size_y);
     canva_print(canva);
     return (0);
 }
