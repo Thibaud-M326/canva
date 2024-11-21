@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <math.h>
-#include <unistd.h>
 #include "canva.h"
 #include "context.h"
 #include "random.h"
-#include "draw.h"
 
 int main(void)
 {
@@ -12,19 +10,17 @@ int main(void)
     float   canva_size_x;
     float   canva_size_y;
     t_canva *canva;
-    t_context context;
+    t_context context = {0};
 
-    canva_size_x = 8;
-    canva_size_y = 2;
+    canva_size_x = 2;
+    canva_size_y = 1;
     canva = canva_create(canva_size_x, canva_size_y);
     canva = canva_init(canva, canva_size_x, canva_size_y);
     context = context_init(context, canva, canva_size_x, canva_size_y);
 
-    //lissajous curve
-
-    float radius;
-
-    radius = 1.0;
-    lissajous_curve(&context, radius);
+    //clear_rect
+    context.fill_rect(&context, -canva_size_x, -canva_size_y, canva_size_x * 2, canva_size_y * 2);
+    context.clear_rect(&context, -canva_size_x / 2, -canva_size_y / 2, canva_size_x, canva_size_y);
+    canva_print(canva);
     return (0);
 }

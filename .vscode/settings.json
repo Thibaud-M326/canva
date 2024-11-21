@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"math.h": "c",
+		"canva.h": "c",
+		"s_canva.h": "c",
+		"context.h": "c",
+		"s_context.h": "c"
+	}
+}
