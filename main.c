@@ -26,7 +26,7 @@ int main(void)
     i = 0.0;
     sin_x = canva_size_x * -1;
     sin_y = 0.0;
-    while (i <= M_PI * 4)
+    while (i <= M_PI * 2)
     {
 		sin_x += 0.1;
 		sin_y = sin(i) * 1;
