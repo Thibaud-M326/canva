@@ -7,7 +7,7 @@ float random_round_float(float range)
 {
     float random;
 
-    random = (float)rand()/(float)(RAND_MAX / range);
+    random = (float)rand()/(float)((float)RAND_MAX / range);
     random = roundf(random * 10) / 10;
     return (random);
 }

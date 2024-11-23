@@ -60,7 +60,7 @@ int lissajous_curve(t_context *context, float radius)
 	angle_y += 0.09;
 	canva_print(context->canva);
 	clear_rect(context, -canva_size_x, -canva_size_y, canva_size_x * 2, canva_size_y * 2);
-	usleep(31000);
+	usleep(30000);
     }
     return (0);
 }
